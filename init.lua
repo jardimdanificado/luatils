@@ -65,7 +65,7 @@ util.time = function(func, ...)
     return result, tclock
 end
 
-randi = randi or 1
+randi = 1
 
 util.random = function(min, max)
     math.randomseed(os.time() + randi)
