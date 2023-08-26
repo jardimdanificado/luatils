@@ -173,4 +173,14 @@ array.clear = function(arr)
     return result
 end
 
+array.selfclear = function(arr)
+    local index = 1
+    for i = 1, #arr do
+      if arr[i] ~= nil then
+        arr[index] = arr[i]
+        index = index + 1
+      end
+    end
+end
+
 return array

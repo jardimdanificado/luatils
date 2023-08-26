@@ -222,4 +222,36 @@ util.visualtable = function(tableToPrint, topLevelName)
     print(stringRepresentation)
 end
 
+util.repeater = function(plist, func, args, time, _type)
+  _type = _type or 0
+  if not func then 
+      for i,v in ipairs(plist) do
+         if v.type == 1 then
+             if v.clockstart + v.time < os.time() then 
+               v.func(util.array.unpack(v.args))
+               plist[i] = nil
+               util.array.selfclear(plist)
+               
+               return plist
+             end
+          else
+            if v.clockstart + v.time < os.time() then 
+               plist[i] = nil
+               util.array.selfclear(plist)
+               return plist
+            end
+            v.func(util.array.unpack(v.args))
+          end
+      end
+  else
+      table.insert(plist,{clockstart=os.time(),time=time,func=func,args=args,type=_type})
+      
+  end
+  return plist
+end
+
+util.agendar = function(plist, func, args, time)
+  return util.repeater(plist,func,args,time,1)
+end
+
 return util
