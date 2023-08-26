@@ -193,7 +193,7 @@ util.stringify = function(obj, indent)
     return str
 end
 
-util.visualstringify = function(tableToConvert, indent, visited, topLevelName)
+util.visufy = function(tableToConvert, indent, visited, topLevelName)
     indent = indent or 0
     visited = visited or {}
     topLevelName = topLevelName or "Table"
@@ -213,15 +213,16 @@ util.visualstringify = function(tableToConvert, indent, visited, topLevelName)
             result = result .. string.rep(" ", indent + 2) .. key .. ": " .. valueType .. "\n"
         end
     end
-
-    print(result)
     return result
 end
 
 util.visualtable = function(tableToPrint, topLevelName)
-    local stringRepresentation = util.visualstringify(tableToPrint, 0, nil, topLevelName)
-    print(stringRepresentation)
+    local stringRepresentation = util.visufy(tableToPrint, 0, nil, topLevelName)
     return stringRepresentation
+end
+
+util.visualstringify = function (obj,indent)
+    print(util.stringify(obj,indent))
 end
 
 util.repeater = function(plist, func, args, time, _type)
