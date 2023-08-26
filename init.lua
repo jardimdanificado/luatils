@@ -214,12 +214,14 @@ util.visualstringify = function(tableToConvert, indent, visited, topLevelName)
         end
     end
 
+    print(result)
     return result
 end
 
 util.visualtable = function(tableToPrint, topLevelName)
     local stringRepresentation = util.visualstringify(tableToPrint, 0, nil, topLevelName)
     print(stringRepresentation)
+    return stringRepresentation
 end
 
 util.repeater = function(plist, func, args, time, _type)
@@ -245,7 +247,6 @@ util.repeater = function(plist, func, args, time, _type)
       end
   else
       table.insert(plist,{clockstart=os.time(),time=time,func=func,args=args,type=_type})
-      
   end
   return plist
 end
